@@ -43,8 +43,9 @@ def disp_string (oled, x, y, str, disp_logo = True):
         oled.blit(fb, 96, 0) # blit the image from the framebuffer to the display
     oled.show()
     
-def rotary_changed(event):
+def rotary_event(event):
     global val
+    
     if event == Rotary.ROT_CW:
         val +=  1
         print(val)
@@ -58,13 +59,13 @@ def rotary_changed(event):
         val = 0 # reset position
         print(val)
             
-    # display results on OLED ...
+    # display results ...
     disp_string (oled, 5, 5, ('%d' %(val)))
 
 
 # rotary endcoder setup
 rotary = Rotary(16,17,18)  # pin numbers: clk,dt,sw
-rotary.add_handler(rotary_changed)
+rotary.add_handler(rotary_event)
 val = 0
 
 # I2C OLED setup
