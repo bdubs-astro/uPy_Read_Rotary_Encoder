@@ -75,5 +75,9 @@ WIDTH  = 128
 HEIGHT = 32  
 oled = disp_setup(scl_pin, sda_pin, WIDTH, HEIGHT)
 
+# display initial reading
+disp_string (oled, 5, 5, ('%d' %(val)))
+print(val)
+
 while True:
     time.sleep_ms(10)
