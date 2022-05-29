@@ -6,12 +6,14 @@
 
 <img src = "./images for README/KY-04-Rotary-Encoder-Pinout.jpg" width = "400"/>
 
+https://components101.com/modules/KY-04-rotary-encoder-pinout-features-datasheet-working-application-alternative
+
 <br>
 
 <img src = "./images for README/Raspberry Pi Pico pinout better.png" width = "800"/>
 
 <br>
 
-https://components101.com/modules/KY-04-rotary-encoder-pinout-features-datasheet-working-application-alternative
+
 
 https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html
