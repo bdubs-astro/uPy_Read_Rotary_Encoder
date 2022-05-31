@@ -35,9 +35,13 @@ class Rotary:
             return
         transition = (self.last_status << 2) | new_status
         if transition == 0b1101:
-            micropython.schedule(self.call_handlers, Rotary.ROT_CW)
+            #micropython.schedule(self.call_handlers, Rotary.ROT_CW)
+            # micropython.schedule() causing RuntimeError: schedule queue full
+            # see https://docs.micropython.org/en/latest/library/micropython.html?highlight=schedule
+            self.call_handlers(Rotary.ROT_CW)
         elif transition == 0b1110:
-            micropython.schedule(self.call_handlers, Rotary.ROT_CCW)
+            #micropython.schedule(self.call_handlers, Rotary.ROT_CCW)
+            self.call_handlers(Rotary.ROT_CCW)
         self.last_status = new_status
         
     def switch_detect(self,pin):
@@ -45,9 +49,11 @@ class Rotary:
             return
         self.last_button_status = self.sw_pin.value()
         if self.sw_pin.value():
-            micropython.schedule(self.call_handlers, Rotary.SW_RELEASE)
+            #micropython.schedule(self.call_handlers, Rotary.SW_RELEASE)
+            self.call_handlers(Rotary.SW_RELEASE)
         else:
-            micropython.schedule(self.call_handlers, Rotary.SW_PRESS)
+            #micropython.schedule(self.call_handlers, Rotary.SW_PRESS)
+            self.call_handlers(Rotary.SW_PRESS)
             
     def add_handler(self, handler):
         self.handlers.append(handler)
