@@ -21,7 +21,7 @@ class Rotary:
     def __init__(self,clk,dt,sw):
         self.dt_pin = Pin(dt, Pin.IN)   # use pullup on encoder breakout board
         self.clk_pin = Pin(clk, Pin.IN) # use pullup on encoder breakout board
-        self.sw_pin = Pin(sw, Pin.IN, Pin.PULL_UP)   # use Pico's internal pullup
+        self.sw_pin = Pin(sw, Pin.IN)   # use pullup on encoder breakout board
         self.last_status = (self.dt_pin.value() << 1) | self.clk_pin.value()
         self.dt_pin.irq(handler=self.rotary_change, trigger=Pin.IRQ_FALLING | Pin.IRQ_RISING )
         self.clk_pin.irq(handler=self.rotary_change, trigger=Pin.IRQ_FALLING | Pin.IRQ_RISING )
